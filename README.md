@@ -4,9 +4,6 @@
 > business: customers browse and order stickers, admins manage inventory,
 > users, and order fulfillment.
 
-*(Suggested new repo name: **`clipcart`** — see [Renaming the repo](#renaming-the-repo) below.
-Currently: `small-business-enterprise-system`, internal package `edu.cas.clipartstickers`.)*
-
 [![Java](https://img.shields.io/badge/Java-8%2B-orange)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.2.4-brightgreen)](https://spring.io/projects/spring-boot)
 [![Build](https://img.shields.io/badge/build-Maven-blue)](https://maven.apache.org/)
@@ -115,9 +112,6 @@ erDiagram
     }
 ```
 
-> 💡 GitHub renders Mermaid diagrams natively in Markdown, so this stays
-> in sync with the code instead of a stale screenshot.
-
 ## 🏁 Getting Started
 
 ### Prerequisites
@@ -177,23 +171,7 @@ These are natural next steps to keep leveling this project up:
 - [ ] Add CI (GitHub Actions) running `mvn verify` on every push
 - [ ] Store images as files/URLs rather than inline Base64 blobs
 
-## 🔤 Renaming the repo
-
-GitHub lets you rename without breaking history:
-
-1. On GitHub: **Settings → General → Repository name** → rename to `clipcart`
-   (old clone URLs auto-redirect for a while, but update yours anyway).
-2. Locally:
-   ```bash
-   git remote set-url origin https://github.com/<your-username>/clipcart.git
-   ```
-3. Pin it on your profile from **Profile → Customize your pins**.
-
 ## 📜 License
 
 Choose a license (MIT is a sane default for a portfolio project) and add
 it as `LICENSE` in the repo root — this README already references it.
-
-## 👤 Author
-
-Built by **adari1** as an academic project, polished for portfolio use.

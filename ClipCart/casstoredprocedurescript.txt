@@ -1,0 +1,37 @@
+create or replace procedure cass.update_product_inventory(
+   order_qnty int,
+   pid int
+
+)
+language plpgsql    
+as $$
+begin
+    -- subtracting the order quantity from the product inventory
+    update cass.products
+    set product_quantity = product_quantity - order_qnty
+    where product_id = pid;
+
+    commit;
+end;$$
+
+----------------------------------------------------------------------
+
+create or replace procedure cass.update_product_inventory_by_orderid(
+   ordid int
+)
+language plpgsql    
+as $$
+DECLARE rec record;
+begin
+    FOR rec IN SELECT product_id, order_quantity FROM cass.order_details , cass.orders
+	where cass.orders.order_id = cass.order_details.order_id 
+	and cass.orders.order_status='Canceled'
+	and cass.orders.order_id = ordid
+  LOOP
+   -- Increase the cancel order product quantity in the product inventory
+    update cass.products
+    set product_quantity = product_quantity + rec.order_quantity
+    where product_id = rec.product_id;
+	commit;
+  END LOOP;
+end;$$

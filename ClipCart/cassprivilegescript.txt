@@ -1,0 +1,32 @@
+CREATE USER casadmin with login PASSWORD 'casadmin123$';
+
+create role cass_update;
+
+grant cass_update to casadmin;
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON ALL TABLES
+IN SCHEMA "cass"
+TO cass_update;
+
+GRANT USAGE ON SCHEMA "cass" TO cass_update ;
+
+GRANT ALL ON PROCEDURE cass.update_product_inventory TO cass_update;
+
+GRANT ALL ON PROCEDURE cass.update_product_inventory_by_orderid TO cass_update;
+
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA "cass" TO cass_update ;
+=========================================================================
+
+CREATE USER casuser with login PASSWORD 'casuser123$';
+
+create role cass_select;
+
+grant cass_select to casuser;
+
+GRANT SELECT
+ON ALL TABLES
+IN SCHEMA "cass"
+TO cass_select;
+
+GRANT USAGE ON SCHEMA "cass" TO cass_update ;

@@ -1,0 +1,78 @@
+-- casdb script
+--create the db and schema then run the script
+--CREATE DATABASE casdb;
+--CREATE SCHEMA cass;
+
+CREATE TABLE cass.role(
+role_id integer not null primary key,
+role_name text not null
+);
+
+CREATE SEQUENCE cass.role_id START 1;
+
+INSERT INTO cass.role values (nextval('cass.role_id'), 'Admin');
+INSERT INTO cass.role values (nextval('cass.role_id'), 'User');
+
+
+CREATE TABLE cass.products(
+product_id integer not null primary key,
+product_name text not null,
+product_price decimal(10,2) not null,
+product_quantity integer not null,
+product_image bytea 
+);
+
+CREATE SEQUENCE cass.product_id START 1; 
+
+INSERT INTO cass.products (product_id,product_name,product_price, product_quantity) 
+values (nextval('cass.product_id'),'smileyface', 0.10, 500);
+
+INSERT INTO cass.products (product_id,product_name,product_price, product_quantity) 
+values (nextval('cass.product_id'),'pawprint', 0.15, 300);
+
+INSERT INTO cass.products (product_id,product_name,product_price, product_quantity) 
+values (nextval('cass.product_id'),'stopsign', 0.25, 100);
+
+INSERT INTO cass.products (product_id,product_name,product_price, product_quantity) 
+values (nextval('cass.product_id'),'thumbsup', 0.10, 100);
+
+CREATE TABLE cass.orders(
+order_id integer not null primary key,
+order_status text not null,
+user_id integer not null,
+order_date timestamp not null,
+ship_date timestamp ,
+order_total decimal(100,2) not null
+);
+
+CREATE SEQUENCE cass.order_id START 1;
+
+CREATE TABLE cass.order_details(
+order_details_id integer not null primary key,
+order_id integer not null,
+product_id integer not null,
+order_quantity integer not null,
+total_price decimal(10,2) not null
+);
+
+CREATE SEQUENCE cass.order_details_id START 1;
+
+CREATE TABLE cass.user(
+user_id integer not null primary key,
+user_roleid integer not null default 2,
+user_name text not null,
+user_password text not null,
+user_firstname text not null,
+user_lastname text not null,
+user_address text not null,
+user_emailid text not null
+);
+
+CREATE SEQUENCE cass.user_id START 1;
+
+INSERT INTO cass.user values (nextval('cass.user_id'),1,'Admin','Admin','Niharika','Adari','usf,tampa,fl 33637', 'adari1@usf.edu');
+
+
+
+
+
